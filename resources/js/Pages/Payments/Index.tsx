@@ -93,7 +93,13 @@ export default function Index({ payments, queryParams }: IndexProps) {
                     <h1 className="text-lg font-bold mb-4">TRILT Data Table</h1>
                     <div className="flex justify-end items-center space-x-2 py-2">
                         <Button variant={'outline'} asChild>
-                            <a href={route('payments.csv.export')}>
+                            <a
+                                href={
+                                    route('payments.csv.export') +
+                                    '?' +
+                                    queryParamsStr
+                                }
+                            >
                                 <DownloadIcon className="h-4 w-4 me-2" />
                                 csv
                             </a>

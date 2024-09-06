@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import {
     Table,
@@ -38,6 +38,7 @@ import {
     PAYMENT_STATUS_CLASS_MAP,
     PAYMENT_STATUS_TEXT_MAP,
 } from '@/Layouts/constants';
+import { DownloadIcon } from '@radix-ui/react-icons';
 
 interface Payment {
     id: string;
@@ -88,6 +89,20 @@ export default function Index({ payments, queryParams }: IndexProps) {
             <div className="container mx-auto py-10">
                 <Card className="p-4">
                     <h1 className="text-lg font-bold mb-4">TRILT Data Table</h1>
+                    <div className="flex justify-end items-center space-x-2 py-2">
+                        <Button variant={'outline'} asChild>
+                            <Link href="" preserveScroll>
+                                <DownloadIcon className="h-4 w-4 me-2" />
+                                csv
+                            </Link>
+                        </Button>
+                        <Button variant={'outline'} asChild>
+                            <Link href="" preserveScroll>
+                                <DownloadIcon className="h-4 w-4 me-2" />
+                                xlsx
+                            </Link>
+                        </Button>
+                    </div>
                     <div className="rounded-md border">
                         <Table>
                             {/* <TableCaption>A list of your recent payments.</TableCaption> */}
@@ -104,7 +119,7 @@ export default function Index({ payments, queryParams }: IndexProps) {
                                 </TableRow>
                                 <TableRow>
                                     <TableHead></TableHead>
-                                    <TableHead>
+                                    <TableHead className="py-2">
                                         <Input
                                             placeholder="Search Name"
                                             defaultValue={
@@ -294,10 +309,12 @@ export default function Index({ payments, queryParams }: IndexProps) {
                     </TableFooter> */}
                         </Table>
                     </div>
-                    <SimplePagination
-                        links={payments.links}
-                        queryParams={queryParams}
-                    ></SimplePagination>
+                    <div className="w-full flex justify-end items-center">
+                        <SimplePagination
+                            links={payments.links}
+                            queryParams={queryParams}
+                        ></SimplePagination>
+                    </div>
                 </Card>
             </div>
         </>

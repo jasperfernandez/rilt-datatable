@@ -29,3 +29,11 @@ Route::get('/', function () {
         'queryParams' => request()->query() ?: null,
     ]);
 })->name('payments.index');
+
+Route::get('/payments/csv/export', function () {
+  //
+})->name('payments.csv.export');
+
+Route::get('/payments/xlsx/export', function () {
+  //
+})->name('payments.xlsx.export');

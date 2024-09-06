@@ -83,6 +83,8 @@ export default function Index({ payments, queryParams }: IndexProps) {
         });
     };
 
+    const queryParamsStr = new URLSearchParams(queryParams).toString();
+
     return (
         <>
             <Head title="Payments DataTable"></Head>
@@ -91,16 +93,22 @@ export default function Index({ payments, queryParams }: IndexProps) {
                     <h1 className="text-lg font-bold mb-4">TRILT Data Table</h1>
                     <div className="flex justify-end items-center space-x-2 py-2">
                         <Button variant={'outline'} asChild>
-                            <Link href="" preserveScroll>
+                            <a href={route('payments.csv.export')}>
                                 <DownloadIcon className="h-4 w-4 me-2" />
                                 csv
-                            </Link>
+                            </a>
                         </Button>
                         <Button variant={'outline'} asChild>
-                            <Link href="" preserveScroll>
+                            <a
+                                href={
+                                    route('payments.xlsx.export') +
+                                    '?' +
+                                    queryParamsStr
+                                }
+                            >
                                 <DownloadIcon className="h-4 w-4 me-2" />
                                 xlsx
-                            </Link>
+                            </a>
                         </Button>
                     </div>
                     <div className="rounded-md border">

@@ -1,9 +1,11 @@
 <?php
 
+use App\Exports\PaymentExport;
 use App\Http\Resources\PaymentResource;
 use Inertia\Inertia;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     $orderColumn = request("order_column", "created_at");
@@ -31,9 +33,11 @@ Route::get('/', function () {
 })->name('payments.index');
 
 Route::get('/payments/csv/export', function () {
-  //
+    return Excel::download(new PaymentExport(request()->query()), 'payments.csv', \Maatwebsite\Excel\Excel::CSV, [
+        'Content-Type' => 'text/csv',
+    ]);
 })->name('payments.csv.export');
 
 Route::get('/payments/xlsx/export', function () {
-  //
+    return Excel::download(new PaymentExport(request()->query()), 'payments.xlsx', \Maatwebsite\Excel\Excel::XLSX);
 })->name('payments.xlsx.export');

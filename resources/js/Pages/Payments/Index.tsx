@@ -98,7 +98,7 @@ export default function Index({ payments, queryParams }: IndexProps) {
                                     route('payments.csv.export') +
                                     '?' +
                                     queryParamsStr
-                                }
+                                }   
                             >
                                 <DownloadIcon className="h-4 w-4 me-2" />
                                 csv
